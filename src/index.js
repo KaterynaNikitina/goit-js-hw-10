@@ -8,7 +8,7 @@ const DEBOUNCE_DELAY = 300;
 
 
 const countryInput = document.querySelector('#search-box');
-countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+// countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 // const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
@@ -32,18 +32,18 @@ function onSearch(e) {
 }
 
 
-function createMarkup({ name, capital, population, languages, flags }) {
-  // const [{
+function createMarkup({ name, capital, population, languages, flag}) {
+  // const {
   //   name, 
   //   capital, 
   //   population, 
   //   languages, 
-  //   flags: { svg: flag} }] = country;
+  //   flag } = country;
 
     const langs = Object.values(languages).join(', ')
 
   return 
-    `<img src="${flags.svg}" alt="flag">
+    `<img src="${flag}" alt="name.official">
     <h2><${name.official}></h2>
     <p>Capital: ${capital}</p>
     <p>Population: ${population}</p>
