@@ -33,16 +33,16 @@ function onSearch(e) {
 
 
 function createMarkup({ name, capital, population, languages, flags }) {
-  const [{
-    name, 
-    capital, 
-    population, 
-    languages, 
-    flags: { svg: flag} }]= country;
+  // const [{
+  //   name, 
+  //   capital, 
+  //   population, 
+  //   languages, 
+  //   flags: { svg: flag} }] = country;
 
     const langs = Object.values(languages).join(', ')
 
-  return markup = 
+  return 
     `<img src="${flags.svg}" alt="flag">
     <h2><${name.official}></h2>
     <p>Capital: ${capital}</p>
