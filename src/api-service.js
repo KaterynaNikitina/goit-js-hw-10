@@ -1,4 +1,4 @@
-export default class APIRestCountries {
+export default class RestCountriesAPI {
   constructor() {
     this.searchQuery = '';
   }
@@ -21,7 +21,5 @@ export default class APIRestCountries {
   setQuery() {
     this.searchQuery = newQuery;
   }
-  // clearInput() {
-  //   this.searchQuery = '';
-  // }
+ 
 }

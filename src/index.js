@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
-import APIRestCounties  from './api-service.js';
+import RestCountiesAPI  from './api-service.js';
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
@@ -13,37 +13,27 @@ countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 // const countryList = document.querySelector('.country-list');
 
 
-const restCountries = new APIRestCounties();
+const restCountriesAPI = new RestCountiesAPI();
 
 function onSearch(e) {
   
   e.preventDefault();
   
-  restCountries.searchQuery = e.target.value.trim();
+  restCountriesAPI.searchQuery = e.target.value.trim();
   
-  // if (restCountries.length === '0) {
-  //   div.innerHTML = ''
-  // }
-
-  restCountries.getCountryInfo()
-    .then(country => createMarkup)
+  restCountriesAPI.getCountryInfo()
+    .then(createMarkup)
     .then(updateCountry)
     .catch(onFetchError)
-    // .finally(() => restCountries.searchQuery = '')
+    .finally(() => restCountriesAPI.searchQuery = '')
 }
 
-function createMarkup({ name, capital, population, languages, flag}) {
+function createMarkup({ name, capital, population, languages, flags }) {
 
-    const langs = Object.values(languages).join(', ')
-    // const {
-    //   name, 
-    //   capital, 
-    //   population, 
-    //   languages, 
-    //   flag } = country;
+    const langs = Object.values(languages).join(', ');
 
   return 
-    `<img src="${flag}" alt="name.official">
+    `<img src="${flags.svg}" alt="name.official">
     <h2><${name.official}></h2>
     <p>Capital: ${capital}</p>
     <p>Population: ${population}</p>
@@ -59,5 +49,6 @@ function onFetchError(error) {
 }
 
 
-  
-
+ // if (restCountriesAPI.length === 0) {
+  //   div.innerHTML = ''
+  // }
