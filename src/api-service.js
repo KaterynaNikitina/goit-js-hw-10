@@ -4,14 +4,14 @@ export default class APIRestCountries {
   }
 
   getCountryInfo() {
+    
     const url =
-      `https://restcountries.com/v3.1/name/${this.searchQuery}?fields=name,capital,population,flag,languages `;
+      `https://restcountries.com/v3.1/name/${this.searchQuery}?fields=name,capital,population,flag,languages`;
 
     return fetch(url)
       .then(response => response.json())
-      .then(data => {
-        return data;
-      });
+      .then(data => data.country);
+      
   }
 
   getQuery() {
@@ -21,7 +21,7 @@ export default class APIRestCountries {
   setQuery() {
     this.searchQuery = newQuery;
   }
-  clearInput() {
-    this.searchQuery = '';
-  }
+  // clearInput() {
+  //   this.searchQuery = '';
+  // }
 }

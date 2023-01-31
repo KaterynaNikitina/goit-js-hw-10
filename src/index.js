@@ -4,43 +4,43 @@ import APIRestCounties  from './api-service.js';
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
-// let inputValue = '';
-
 
 const countryInput = document.querySelector('#search-box');
-// countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+const countryInfo = document.querySelector('.country-info');
+
+countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 // const countryList = document.querySelector('.country-list');
-const countryInfo = document.querySelector('.country-info');
+
 
 const restCountries = new APIRestCounties();
 
 function onSearch(e) {
   
   e.preventDefault();
+  
   restCountries.searchQuery = e.target.value.trim();
   
-  if (restCountries.searchQuery === '') {
-    return alert('No data');
-  }
+  // if (restCountries.length === '0) {
+  //   div.innerHTML = ''
+  // }
 
   restCountries.getCountryInfo()
-    .then(createMarkup)
+    .then(country => createMarkup)
     .then(updateCountry)
     .catch(onFetchError)
-    .finally(() => restCountries.searchQuery = '')
+    // .finally(() => restCountries.searchQuery = '')
 }
 
-
 function createMarkup({ name, capital, population, languages, flag}) {
-  // const {
-  //   name, 
-  //   capital, 
-  //   population, 
-  //   languages, 
-  //   flag } = country;
 
     const langs = Object.values(languages).join(', ')
+    // const {
+    //   name, 
+    //   capital, 
+    //   population, 
+    //   languages, 
+    //   flag } = country;
 
   return 
     `<img src="${flag}" alt="name.official">
@@ -51,7 +51,7 @@ function createMarkup({ name, capital, population, languages, flag}) {
 };
   
 function updateCountry() {
-  countryInfo.insertAdjacentHTML ('beforeend', markup);
+  countryInfo.insertAdjacentHTML('beforeend', markup);
 } 
 
 function onFetchError(error) {
