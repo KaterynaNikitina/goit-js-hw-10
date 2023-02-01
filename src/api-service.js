@@ -7,14 +7,20 @@ export default class RestCountriesAPI {
   getCountryInfo() {
     
     const url =
-      `https://restcountries.com/v3.1/name/${this.searchQuery}?fields=name`;
+      `https://restcountries.com/v3.1/name/${this.searchQuery}?fields=name,capital,population,languages,flags`;
 
     return fetch(url)
-      .then(response => response.json())
-      .then(data => data[0].name.common);           
-     
-  }
-
+      .then(response => {
+        if (!response.ok){
+          throw new Error(response.status);
+          return;
+        }
+        return response.json();
+      })
+      .then(data => {
+       return data;            
+  })
+}
   getQuery() {
     return this.searchQuery;
   }
@@ -22,7 +28,5 @@ export default class RestCountriesAPI {
   setQuery(newQuery) {
     this.searchQuery = newQuery;
   }
- 
 }
 
-// ,capital,population,languages,flags
