@@ -1,4 +1,3 @@
-
 export default class RestCountriesAPI {
   constructor(searchQuery) {
     this.searchQuery = searchQuery;
