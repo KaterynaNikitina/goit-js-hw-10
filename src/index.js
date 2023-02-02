@@ -18,7 +18,7 @@ countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
   restCountriesAPI.searchQuery = e.target.value.trim();
-  console.log(restCountriesAPI.searchQuery);
+  // console.log(restCountriesAPI.searchQuery);
 
   if (restCountriesAPI.searchQuery === '') {
     clearCountries();
@@ -48,7 +48,7 @@ function createMarkup(countries) {
         <p>Population: ${population}</p>
         <p>Languages: ${Object.values(languages).join(', ')}</p>`;
     updateCountry(markup);
-    console.log(markup);
+    // console.log(markup);
     return;
 
   } else {
